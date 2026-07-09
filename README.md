@@ -121,6 +121,14 @@ make lint
 make test
 ```
 
+## 📊 Performance Benchmarks
+
+Below is a latency comparison running various search query strategies:
+
+<!-- BENCHMARK_TABLE_START -->
+*Benchmark Not Run: Missing required dependencies: sentence_transformers*
+<!-- BENCHMARK_TABLE_END -->
+
 ---
 
 ## 🔍 API Endpoint Details

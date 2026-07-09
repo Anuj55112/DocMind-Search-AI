@@ -1,1 +1,4 @@
-from src.models.classifier import ZeroShotClassifier
+try:
+    from src.models.classifier import ZeroShotClassifier
+except ImportError:
+    pass

@@ -1,0 +1,27 @@
+{
+    "project": "DocMind Search AI",
+    "timestamp": "2026-07-09T09:44:09.968404Z",
+    "status": "not_run",
+    "hardware": {
+        "os": "Darwin",
+        "cpu": "Apple M3",
+        "ram_gb": 8,
+        "gpu": "Apple Metal (MPS)"
+    },
+    "environment": {
+        "python": "3.12.7",
+        "torch": "2.12.1"
+    },
+    "metadata": {
+        "model": "all-MiniLM-L6-v2",
+        "parameters_million": 22.7,
+        "dataset": "Sample Knowledge Base (10 chunks)",
+        "batch_size": 1,
+        "image_size": null,
+        "sequence_length": 128,
+        "device": "cpu"
+    },
+    "benchmarks": {},
+    "reason": "Missing required dependencies: sentence_transformers",
+    "required_dependency": "sentence_transformers"
+}
