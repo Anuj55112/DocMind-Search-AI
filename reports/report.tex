@@ -1,0 +1,42 @@
+\documentclass[11pt,journal,onecolumn]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{DocMind AI: An Intelligent Enterprise Search and Explained Topic Classification Platform}
+\author{Anuj Meena}
+\maketitle
+
+\begin{abstract}
+This report documents the design and evaluation of DocMind AI, a multi-stage enterprise text retrieval and topic categorization engine. DocMind AI integrates sparse keyword indexers (BM25) with dense semantic sentence embeddings (SentenceTransformers) using reciprocal blending. It features dynamic synonym-based query expansions and secondary Cross-Encoder rerankers to improve top candidate relevance. For explainability, it incorporates a custom Leave-One-Out (LOO) feature attribution explainer that isolates word-level model confidence deltas, outputting color-coded html highlight markings. A complete microservice API (FastAPI) and search dashboard (Streamlit) are deployed.
+\end{abstract}
+
+\section{Introduction}
+Text retrieval systems have evolved from simple keyword indices to dense semantic search mappings. While dense embeddings capture query context, sparse indices (like BM25) ensure high keyword precision. DocMind AI combines these two modalities via a linear score blender, supported by a secondary Cross-Encoder reranking network to refine search results. Furthermore, the platform implements classification models to classify texts zero-shot, with a custom perturbation-based Leave-One-Out (LOO) token attributer to explain classification outputs.
+
+\section{System Architecture}
+\subsection{Hybrid Retrieval \& Rerank Pipeline}
+The retrieval engine operates in two distinct phases:
+\begin{enumerate}
+    \item \textbf{Retrieval Stage}: Ingests query tokens, runs a synonym-based query expansion pass, and queries the BM25 indexer and SentenceTransformer embedder in parallel. Normalizes and blends scores linearly.
+    \item \textbf{Reranking Stage}: Feeds top candidate blocks into a pairwise Cross-Encoder (\textit{cross-encoder/ms-marco-MiniLM-L-6-v2}) to score document-query pairs directly, refining top results.
+\end{enumerate}
+
+\subsection{Leave-One-Out (LOO) Attribution Explainer}
+Explainable AI is critical for zero-shot text classifiers. To compute attributions, individual words are masked one-by-one, and the model's output probabilities are recalculated. The difference in probability relative to the baseline provides a quantitative metric of the word's positive (supportive) or negative (adversarial) contribution.
+
+\section{Production Verification}
+The platform's code structure is fully verified via unit tests, validating:
+\begin{itemize}
+    \item \textbf{Hybrid Blend Integrity}: Scores remain within stable $[0, 1]$ bounds.
+    \item \textbf{Zero-Shot Classifications}: Predictions map correctly to arbitrary labels.
+    \item \textbf{LOO Computations}: Probability deltas sum accurately.
+\end{itemize}
+
+\section{Conclusion}
+DocMind AI presents a robust framework for enterprise search and document QA. By combining dual-stage retrieval with LOO token-level attributions, the platform delivers high-precision semantic search alongside transparent model diagnostics.
+
+\end{document}
