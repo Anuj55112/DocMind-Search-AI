@@ -1,0 +1,38 @@
+[
+  {
+    "id": "doc_1",
+    "title": "Introduction to Convolutional Neural Networks for Computer Vision",
+    "content": "Convolutional Neural Networks (CNNs) are deep learning models designed to process structured grid data like images. They use convolution operations to extract hierarchical spatial features, starting from edges and textures to complex shapes. Popular models like ResNet, U-Net, and EfficientNet have revolutionized image classification, object detection, and medical image segmentation.",
+    "category": "Computer Vision"
+  },
+  {
+    "id": "doc_2",
+    "title": "Segment Anything Model (SAM) and Interactive Image Partitioning",
+    "content": "The Segment Anything Model (SAM) developed by Meta AI is a foundation model for image segmentation. It supports zero-shot generalization to new image distributions using prompts like coordinates (points), bounding boxes, or free-text descriptions. SAM 2 extends this capability to video objects, tracking segments dynamically across frames.",
+    "category": "Computer Vision"
+  },
+  {
+    "id": "doc_3",
+    "title": "Understanding Retrieval-Augmented Generation (RAG) Platforms",
+    "content": "Retrieval-Augmented Generation (RAG) combines dense document retrieval with generative large language models (LLMs). RAG parses documents, chunks text, creates embeddings, and indexes them in a vector database. During query execution, the system retrieves relevant chunks, reranks them using Cross-Encoders, and injects them as prompt context into the LLM, reducing hallucinations.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "doc_4",
+    "title": "GraphRAG: Knowledge Graphs for Context-Rich Generation",
+    "content": "GraphRAG is an extension of traditional RAG pipelines that incorporates structured knowledge graphs. By extracting entities and relationships from the text corpus, the system builds an entity-relationship network. Multi-hop queries traverse the graph to retrieve rich context, solving complex reasoning tasks that standard vector embeddings struggle to answer.",
+    "category": "Generative AI"
+  },
+  {
+    "id": "doc_5",
+    "title": "Time Series Forecasting with Patch Transformers and TFT",
+    "content": "Modern time series forecasting uses architectures like PatchTST and Temporal Fusion Transformers (TFT) instead of simple LSTMs. PatchTST divides time series signals into sub-series patches, preserving local temporal correlation and enabling self-attention computation across patches. TFT incorporates multi-horizon predictions with static covariate encoders and temporal self-attention.",
+    "category": "Time Series"
+  },
+  {
+    "id": "doc_6",
+    "title": "Hybrid Search: Combining BM25 with Dense Sentence Embeddings",
+    "content": "Hybrid search systems blend keyword-matching BM25 sparse retrieval with dense neural sentence embeddings. While BM25 excel at exact matching of names, numbers, and rare words, dense embeddings capture semantic context. Combining both scores using Reciprocal Rank Fusion (RRF) provides high recall and precision in enterprise search engines.",
+    "category": "Information Retrieval"
+  }
+]
