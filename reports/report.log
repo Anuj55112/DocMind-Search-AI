@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.6)  9 JUL 2026 15:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.6)  11 JUL 2026 02:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -429,8 +429,14 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr
-/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}] [2] (reports/repor
-t.aux)
+/local/texlive/2026/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
+4.
+
+(/usr/local/texlive/2026/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [2] [3]
+(reports/report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -442,17 +448,17 @@ Package rerunfilecheck Warning: File `report.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: 3E40A9C72F1B474A023DCA75B2A24612;1017
-(rerunfilecheck)             After:  878865B936A29D2CBCAA6876A820D72D;2182.
+(rerunfilecheck)             Before: 878865B936A29D2CBCAA6876A820D72D;2182
+(rerunfilecheck)             After:  2472039F2D4492916F9704FAFC0BC67A;3117.
  ) 
 Here is how much of TeX's memory you used:
- 10527 strings out of 467525
- 163369 string characters out of 5418983
- 586026 words of memory out of 5000000
- 39306 multiletter control sequences out of 15000+600000
- 661880 words of font info for 103 fonts, out of 8000000 for 9000
+ 10586 strings out of 467525
+ 164221 string characters out of 5418983
+ 589029 words of memory out of 5000000
+ 39348 multiletter control sequences out of 15000+600000
+ 663502 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,778b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,7n,79p,767b,618s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
@@ -460,13 +466,14 @@ usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
 r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/l
 ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
 cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
-l/texlive/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/
-2026/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026/texmf
--dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on reports/report.pdf (2 pages, 117570 bytes).
+l/texlive/2026/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texliv
+e/2026/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2026/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2026/texmf-dist/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on reports/report.pdf (3 pages, 140421 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 83 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 145 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 89 words of extra memory for PDF output out of 10000 (max. 10000000)
 

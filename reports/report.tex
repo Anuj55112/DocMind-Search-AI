@@ -12,7 +12,7 @@
 \maketitle
 
 \begin{abstract}
-This report documents the design, mathematical foundations, and system architecture of DocMind AI, a multi-stage enterprise retrieval and zero-shot categorization engine. DocMind AI combines sparse term indexing (BM25) and dense semantic representations (SentenceTransformers) via a weighted reciprocal score blender. Retrieval outputs are refined using secondary Cross-Encoder rerankers to maximize search relevance. For explainability, we implement a custom Leave-One-Out (LOO) token attribution explainer that masks tokens one-by-one to measure probability confidence shifts, outputting visual HTML markups. We present the mathematical specifications of the retrieval scoring, the zero-shot classifier mapping, and the production APIs.
+This report documents the design, mathematical foundations, and system architecture of DocMind AI, a multi-stage enterprise retrieval and zero-shot categorization engine. DocMind AI combines sparse term indexing (BM25) and dense semantic representations (SentenceTransformers) via a weighted score blender. Retrieval outputs are refined using secondary Cross-Encoder rerankers to maximize search relevance. For explainability, we implement a custom Leave-One-Out (LOO) token attribution explainer that masks tokens one-by-one to measure probability confidence shifts, outputting visual HTML markups. We present the mathematical specifications of the retrieval scoring, the zero-shot classifier mapping, and the production APIs.
 \end{abstract}
 
 \section{Introduction}
@@ -54,6 +54,69 @@ We configure $w_{\text{dense}} = 0.7$ and $w_{\text{sparse}} = 0.3$.
 
 \subsection{Cross-Encoder Reranking}
 The top $K$ blended candidate documents are passed to the `cross-encoder/ms-marco-MiniLM-L-6-v2` network. The network accepts the query and document concatenated, predicting a direct logit probability value representing candidate relevance.
+
+\section{System Architecture \& Class Diagrams}
+The DocMind search engine is designed using modular dependency-injection patterns.
+
+\subsection{System Sequence Flows}
+The search query process flow details the lifecycle of retrieval:
+\begin{enumerate}
+    \item **Query Entry**: Client enters search terms via Streamlit or the `/search` FastAPI API.
+    \item **Synonym Expander**: The raw terms are parsed and expanded with target contextual synonyms.
+    \item **Parallel Searchers**: The expander outputs search lists to both the custom BM25 indexer and the SentenceTransformer dense vector database.
+    \item **Norm Blender**: Normalizes raw scoring bounds and merges outputs to compile a single list of candidate scores.
+    \item **Reranker Engine**: Feeds the top candidates and the query to the Cross-Encoder model.
+    \item **Output Hits**: Delivers the final ranked list of relevant search items.
+\end{enumerate}
+
+\subsection{BM25Searcher \& HybridBlender Class Map}
+The index classes coordinate document storage and retrieval scores:
+\begin{verbatim}
++--------------------------------------------------------------+
+|                         BM25Searcher                         |
+|  - index: dict                                               |
+|  - doc_lengths: list                                         |
+|  - avg_doc_len: float                                        |
++--------------------------------------------------------------+
+|  + fit(documents: list)                                      |
+|  + get_scores(query: str) -> ndarray                         |
++--------------------------------------------------------------+
+                               |
+                               v
++--------------------------------------------------------------+
+|                        HybridBlender                         |
++--------------------------------------------------------------+
+|  + normalize(scores: ndarray) -> ndarray                     |
+|  + blend(sparse_scores, dense_scores, weight: float)         |
++--------------------------------------------------------------+
+\end{verbatim}
+
+\section{Model Hyperparameters \& Tensor Dimensions}
+To guarantee full reproducibility, the model configurations are specified as follows:
+\begin{itemize}
+    \item \textbf{Search Term Parameters}:
+    \begin{itemize}
+        \item Sparse BM25 Scaling Factor ($k_1$): 1.5
+        \item Length Normalization Constant ($b$): 0.75
+    \end{itemize}
+    \item \textbf{SentenceTransformer Dimensions}:
+    \begin{itemize}
+        \item Model Architecture: `all-MiniLM-L6-v2` (6 encoder transformer layers).
+        \item Embedding Vector Dimensions: 384.
+        \item Max Input Sequence Tokens: 256.
+    \end{itemize}
+    \item \textbf{Cross-Encoder Reranker Dimensions}:
+    \begin{itemize}
+        \item Model Architecture: `cross-encoder/ms-marco-MiniLM-L-6-v2` (6 transformer layers).
+        \item Classification Logits Dimension: 1 (representing matching relevance).
+        \item Top Candidates Reranked ($K$): 10 candidates.
+    \end{itemize}
+    \item \textbf{Zero-Shot Classifier Dimensions}:
+    \begin{itemize}
+        \item Model Architecture: `facebook/bart-large-mnli` (1024 hidden states, 24 transformer layers).
+        \item Output Entailment Dimensions: 3 (entailment, neutral, contradiction).
+    \end{itemize}
+\end{itemize}
 
 \section{Zero-Shot Classification \& Explainability}
 
