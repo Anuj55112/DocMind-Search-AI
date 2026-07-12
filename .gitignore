@@ -72,3 +72,6 @@ tmp
 # Keep agents ignored
 .claude/
 .agents/
+
+# Ignore local reports
+reports/
